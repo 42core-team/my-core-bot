@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  core:
+    image: registry.coregame.de/core/core-event-0:latest
+    volumes:
+      - ..:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+  visualizer:
+    image: registry.coregame.de/core/visualizer:latest
+    environment:
+      PORT: 80
+      SOCKET_SERVER: "host.docker.internal:4242"
+      HOST: "127.0.0.1:80"
+    ports:
+      - 80:80
