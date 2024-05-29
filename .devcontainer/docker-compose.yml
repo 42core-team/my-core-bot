@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
-  core:
+  my-core-bot:
     image: registry.coregame.de/core/core-event-0:latest
     volumes:
       - ..:/workspace:cached
-    command: /bin/sh -c "while sleep 1000; do :; done"
+    stdin_open: true
 
   visualizer:
     image: registry.coregame.de/core/visualizer:latest
