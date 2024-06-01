@@ -1,3 +1,5 @@
 .vscode/
 build/
 bot
+logs/
+old-logs/
