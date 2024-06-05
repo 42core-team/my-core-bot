@@ -5,12 +5,16 @@ services:
     volumes:
       - ..:/workspace:cached
     stdin_open: true
+    networks:
+      - default
 
   visualizer:
     image: registry.coregame.de/core/visualizer:latest
     environment:
       PORT: 80
-      SOCKET_SERVER: "my-core-bot:4242"
+      SOCKET_SERVER: "host.docker.internal:4242"
       HOST: "127.0.0.1:80"
     ports:
       - 80:80
+    networks:
+      - default
