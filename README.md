@@ -12,7 +12,7 @@
 6. go to src/main.c to the ft_user_loop function and start creating your bot
 
 # Useful Commands
-- Run a game: `make`
+- Run a game: `make` or `make run`
 - Stop a game: `make stop`
 - Update CORE: `make update`
 
