@@ -10,8 +10,10 @@
 4. run `make`
 5. Open localhost in your browser to see the visualizer (if you open it throught VSCode and it doesn't show the visualizer then just remove the port 4242 from the URL)
 
-# How to run a game?
-run `start command` in your console inside the devcontainer
+# Useful Commands
+- Run a game: `make run`
+- Stop a game: `make stop`
+- Update CORE: `make update`
 
 # Reminder
 Because you cloned repository you have to change the origin to your own repo if you want to push the code somewhere to git
