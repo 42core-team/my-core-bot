@@ -1,4 +1,4 @@
-#include "con_lib.h"
+#include "/core/con_lib.h"
 #include <stdio.h>
 
 void	ft_user_loop(void);
