@@ -18,5 +18,3 @@
 
 # Reminder
 Because you cloned repository you have to change the origin to your own repo if you want to push the code somewhere to git
-
-servus hi
