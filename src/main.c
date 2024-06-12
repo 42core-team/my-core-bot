@@ -1,5 +1,4 @@
-#include "/core/con_lib.h"
-#include <stdio.h>
+#include "../include/my_core_bot.h"
 
 void	ft_user_loop(void);
 
