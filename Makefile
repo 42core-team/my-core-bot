@@ -25,6 +25,11 @@ debug: build $(EXEC)
 	$(COREDIR)/starlord $(PLAYER1_ID) > /dev/null &
 	./$(EXEC) $(PLAYER2_ID)
 
+battle: build $(EXEC)
+	$(COREDIR)/game $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
+	../bot $(PLAYER1_ID) > /dev/null &
+	./$(EXEC) $(PLAYER2_ID)
+
 $(EXEC): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ -L $(COREDIR) -l:con_lib.a -I $(INC)
 
