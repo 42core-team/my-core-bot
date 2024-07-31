@@ -4,7 +4,7 @@ SRCS = $(wildcard $(SRCDIR)/*.c)
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -lm
 COREDIR = /core
 LIBS = $(COREDIR)/con_lib.a
 INC = $(COREDIR)
