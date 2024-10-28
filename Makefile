@@ -1,7 +1,9 @@
 SRCDIR = src
 OBJDIR = build
-SRCS = $(shell find $(SRCDIR)/ -name '*.c' )
+INCDIR = ./ # include # users may put their own headers within the SRCDIR therefore ./ is the default start of search
+SRCS = $(shell find $(SRCDIR)/ -name '*.c')
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+INCLUDE = $(shell find $(INCDIR)/ -name '*.h')
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lm
@@ -33,12 +35,9 @@ battle: build $(EXEC)
 $(EXEC): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ -L $(COREDIR) -l:con_lib.a -I $(INC)
 
-$(OBJS): $(OBJDIR)%.o : $(SRCDIR)%.c
+$(OBJS): $(OBJDIR)%.o : $(SRCDIR)%.c $(INCLUDE)
 	@mkdir -p $(dir $@)
 	$(CC) -c $(CFLAGS) $< -o $@
-
-# $(OBJDIR)/%.o: $(SRCDIR)/%.c
-# 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
 
 build: stop
 	mkdir -p $(OBJDIR)
