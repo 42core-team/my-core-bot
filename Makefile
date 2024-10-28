@@ -1,7 +1,7 @@
 SRCDIR = src
 OBJDIR = build
-SRCS = $(wildcard $(SRCDIR)/*.c)
-OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
+SRCS = $(shell find $(SRCDIR)/ -name '*.c' )
+OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lm
@@ -33,8 +33,12 @@ battle: build $(EXEC)
 $(EXEC): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ -L $(COREDIR) -l:con_lib.a -I $(INC)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
+$(OBJS): $(OBJDIR)%.o : $(SRCDIR)%.c
+	@mkdir -p $(dir $@)
+	$(CC) -c $(CFLAGS) $< -o $@
+
+# $(OBJDIR)/%.o: $(SRCDIR)/%.c
+# 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
 
 build: stop
 	mkdir -p $(OBJDIR)
