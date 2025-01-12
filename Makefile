@@ -26,6 +26,8 @@ debug: $(TARGET)
 	$(CORE_DIR)/starlord $(PLAYER1_ID) > /dev/null &
 	$(CORE_DIR)/game $(PLAYER1_ID) $(PLAYER2_ID)
 
+build: $(TARGET)
+
 $(TARGET): stop $(OBJS)
 	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
