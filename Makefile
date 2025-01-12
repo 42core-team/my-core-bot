@@ -1,49 +1,43 @@
-SRCDIR = src
-OBJDIR = build
-SRCS = $(wildcard $(SRCDIR)/*.c)
-OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
+SRC_DIR = src
+BUILD_DIR = build
+CORE_DIR = /core
+INCLUDES = -I include -I /core
+HEADERS = $(shell find include -name '*.h') $(shell find /core -name '*.h')
+LIBS = /core/con_lib.a
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -lm
-COREDIR = /core
-LIBS = $(COREDIR)/con_lib.a
-INC = $(COREDIR)
-EXEC = bot
+SRCS = $(shell find $(SRC_DIR) -name '*.c')
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+
+TARGET = bot
+CXX = cc
+CXXFLAGS = -Werror -Wall -Wextra $(INCLUDES)
+LDFLAGS = $(LIBS)
 
 PLAYER1_ID := 10
 PLAYER2_ID := 20
 
-.PHONY: run debug clean fclean re $(EXEC) stop
+run: $(TARGET)
+	$(CORE_DIR)/game $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
+	$(CORE_DIR)/starlord $(PLAYER1_ID) > /dev/null &
+	./$(TARGET) $(PLAYER2_ID)
 
-run: build $(EXEC)
-	$(COREDIR)/game $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
-	$(COREDIR)/starlord $(PLAYER1_ID) > /dev/null &
-	./$(EXEC) $(PLAYER2_ID)
+debug: $(TARGET)
+	./$(TARGET) $(PLAYER2_ID) > /dev/null &
+	$(CORE_DIR)/starlord $(PLAYER1_ID) > /dev/null &
+	$(CORE_DIR)/game $(PLAYER1_ID) $(PLAYER2_ID)
 
-debug: build $(EXEC)
-	$(COREDIR)/game $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
-	$(COREDIR)/starlord $(PLAYER1_ID) > /dev/null &
-	./$(EXEC) $(PLAYER2_ID)
+$(TARGET): stop $(OBJS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
-battle: build $(EXEC)
-	$(COREDIR)/game $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
-	../bot $(PLAYER1_ID) > /dev/null &
-	./$(EXEC) $(PLAYER2_ID)
-
-$(EXEC): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ -L $(COREDIR) -l:con_lib.a -I $(INC)
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
-
-build: stop
-	mkdir -p $(OBJDIR)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean: stop
-	rm -rf $(OBJDIR)
+	rm -rf $(BUILD_DIR)
 
 fclean: clean
-	rm -rf $(EXEC)
+	rm -rf $(TARGET)
 
 re: fclean run
 
@@ -54,3 +48,5 @@ stop:
 
 update:
 	@docker compose --project-directory=./.devcontainer pull
+
+.PHONY: run debug battle $(TARGET) clean fclean re stop update
