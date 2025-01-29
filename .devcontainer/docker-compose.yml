@@ -1,6 +1,6 @@
 services:
   my-core-bot:
-    image: registry.coregame.de/core/core-event-0:latest
+    image: registry.coregame.de/core/core-event-01:latest
     platform: linux/amd64
     volumes:
       - ..:/workspace:cached
