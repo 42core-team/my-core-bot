@@ -62,7 +62,7 @@ IDE ?= vscode
 .PHONY: all dev-container
 
 # Usage:
-#   make dev-container (IDE=<IDE>)
+#   make devcontainer (IDE=<IDE>)
 #
 # This command sets up and launches a development container using the Devpod CLI.
 # The IDE can be specified using the `IDE` environment variable (default: vscode).
@@ -73,7 +73,7 @@ IDE ?= vscode
 #   rider, fleet, goland, webstorm, rustrover, rubymine, clion, dataspell,
 #   jupyternotebook, vscode-insiders, positron, rstudio, web
 #
-dev-container: __print-banner __install-devpod __check-docker __add-docker-provider __launch-devpod
+devcontainer: __print-banner __install-devpod __check-docker __add-docker-provider __launch-devpod
 
 # Define colors
 COLOR_DATE :=\033[1;37m
