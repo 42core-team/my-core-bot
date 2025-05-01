@@ -56,6 +56,7 @@ update:
 
 # Devpod CLI executable
 DEVCLI := ./devpod
+DEVPOD_ID := my-core-bot
 # Default to vscode if none is specified
 IDE ?= vscode
 
@@ -158,10 +159,10 @@ __launch-devpod:
 	@echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Errors resulting from the docker compose pull cmd can be safely ignored"
 	@if [ "$(IDE)" = "web" ]; then \
 		echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Launching Devpod in web mode (no local IDE)."; \
-		./devpod up .; \
+		./devpod up . --id "$(DEVPOD_ID)" $$( [ "$(RECREATE)" = "true" ] && echo "--recreate" ); \
 	else \
 		echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Launching Devpod with IDE: $(IDE)"; \
-		./devpod up . --ide "$(IDE)"; \
+		./devpod up . --id "$(DEVPOD_ID)" --ide "$(IDE)" $$( [ "$(RECREATE)" = "true" ] && echo "--recreate" ); \
 	fi
 
 uninstall-devpod:
