@@ -49,7 +49,7 @@ stop:
 	@pkill starlord > /dev/null || true
 
 update:
-	docker compose --project-directory=./.devcontainer pull
+	@docker compose --project-directory=./.devcontainer pull
 
 .PHONY: run debug battle $(TARGET) clean fclean re stop update
 
@@ -144,6 +144,7 @@ __add-docker-provider:
 	fi
 
 __launch-devpod:
+	@echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Errors resulting from the docker compose pull cmd can be safely ignored"
 	@if [ "$(IDE)" = "web" ]; then \
 		echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Launching Devpod in web mode (no local IDE)."; \
 		./devpod up .; \
