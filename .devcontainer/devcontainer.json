@@ -39,7 +39,10 @@
 		"vscode": {
 			"extensions": [
 				"ms-vscode.cpptools"
-			]
+			],
+			"settings": {
+				"remote.autoForwardPorts": false
+			}
 		}
 	}
 
