@@ -63,7 +63,7 @@ IDE ?= vscode
 .PHONY: all dev-container
 
 # Usage:
-#   make devcontainer (IDE=<IDE>)
+#   make devcontainer (IDE=<IDE>) (RECREATE=true)
 #
 # This command sets up and launches a development container using the Devpod CLI.
 # The IDE can be specified using the `IDE` environment variable (default: vscode).
