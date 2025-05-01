@@ -5,8 +5,6 @@ services:
     volumes:
       - ..:/workspace:cached
     stdin_open: true
-    networks:
-      - default
 
   visualizer:
     image: ghcr.io/42core-team/visualizer:dev
@@ -16,5 +14,3 @@ services:
       HOST: "127.0.0.1:80"
     ports:
       - 80:80
-    networks:
-      - default
