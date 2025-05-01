@@ -8,7 +8,7 @@ int	main(int argc, char **argv)
 	int	won;
 	// ft_enable_debug(); // uncomment this to show more debug information in the console when running a game
 	ft_init_con(NULL, &argc, argv);
-	won = ft_loop(&ft_init_func, &ft_user_loop, NULL);
+	won = ft_loop(&ft_init_func, &ft_user_loop, NULL, NULL);
 	ft_close_con();
 	if (won)
 		return (0);
