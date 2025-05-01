@@ -22,6 +22,11 @@ Want to get hacking right away? Set up your dev environment in one simple comman
 make devcontainer
 ```
 
+### 💡 Pro Tip
+> **Having trouble pushing from inside VSCode when using the Dev Container?**  
+> Just switch to your regular terminal outside of VSCode and push from there. 🖥️🔄
+
+
 This command will:
 1. Automatically download and install the **Devpod CLI** (if it’s not already there)
 2. Ensure **Docker** is up and running
@@ -38,6 +43,16 @@ This command will:
 `rider`, `fleet`, `goland`, `webstorm`, `rustrover`, `rubymine`, `clion`, `dataspell`, `jupyternotebook`,  
 `vscode-insiders`, `positron`, `rstudio`
 
-### 💡 Pro Tip
-> **Having trouble pushing from inside VSCode when using the Dev Container?**  
-> Just switch to your regular terminal outside of VSCode and push from there. 🖥️🔄
+#### 🛑 Stop the Dev Container
+To stop the running Dev Container, use:
+```bash
+make stop-devcontainer
+```
+This will stop the container without removing it, allowing you to restart it later.
+
+#### ❌ Remove the Dev Container
+To completely remove the Dev Container, use:
+```bash
+make remove-devcontainer
+```
+This will delete the container and its associated resources.
