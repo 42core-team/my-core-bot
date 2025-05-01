@@ -8,11 +8,17 @@
 
 Welcome to the **CORE** project repository! We’re excited to have you on board for this coding adventure.
 
+### 🚀 Quick Start Guide
+
+1. Clone the repository and set up your dev container:
+   ```bash
+   git clone git@github.com:42core-team/my-core-bot.git && cd my-core-bot && make devcontainer
+   ```
+2. Run `make` in the terminal to test.
+3. Open [localhost](http://localhost) in your browser to see the gameplay.
+
 ### 📚 Useful Links
 - **Official CORE Wiki**: [wiki.coregame.de](https://wiki.coregame.de/#/)
-
-### 🧑‍💻 Get Started
-- Head over to **`src/main.c`** to dive into the code and start building!
 
 ### 🛠️ Spin Up Your Dev Container
 
