@@ -28,15 +28,10 @@ Want to get hacking right away? Set up your dev environment in one simple comman
 make devcontainer
 ```
 
-### 💡 Pro Tip
-> **Having trouble pushing from inside VSCode when using the Dev Container?**  
-> Just switch to your regular terminal outside of VSCode and push from there. 🖥️🔄
-
-
 This command will:
-1. Automatically download and install the **Devpod CLI** (if it’s not already there)
-2. Ensure **Docker** is up and running
-3. Set up the **Docker provider** for Devpod
+1. Automatically download and install the **Devpod CLI** (if it’s not already there).
+2. Ensure **Docker** is up and running (it will attempt to start Docker on 42 iMacs if it’s not started).
+3. Set up the **Docker provider** for Devpod.
 4. Launch your preferred IDE inside a fully configured **Dev Container**
 
 > 💡 **Tip**: You can specify your favorite IDE by passing the `IDE` variable. For example:
