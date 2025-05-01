@@ -2,10 +2,10 @@ SRC_DIR = src
 BUILD_DIR = build
 CORE_DIR = /core
 INCLUDES = -I include -I /core
-HEADERS = $(shell find include -name '*.h') $(shell find /core -name '*.h')
+HEADERS = $(shell find include -name '*.h' 2>/dev/null) $(shell find /core -name '*.h' 2>/dev/null)
 LIBS = /core/con_lib.a
 
-SRCS = $(shell find $(SRC_DIR) -name '*.c')
+SRCS = $(shell find $(SRC_DIR) -name '*.c' 2>/dev/null)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 TARGET = bot
