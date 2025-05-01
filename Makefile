@@ -60,10 +60,12 @@ DEVPOD_ID := my-core-bot
 # Default to vscode if none is specified
 IDE ?= vscode
 
-.PHONY: all dev-container
+.PHONY: all dev-container stop-devcontainer remove-devcontainer
 
 # Usage:
 #   make devcontainer (IDE=<IDE>) (RECREATE=true)
+#   make stop-devcontainer
+#   make remove-devcontainer
 #
 # This command sets up and launches a development container using the Devpod CLI.
 # The IDE can be specified using the `IDE` environment variable (default: vscode).
@@ -164,6 +166,12 @@ __launch-devpod:
 		echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Launching Devpod with IDE: $(IDE)"; \
 		./devpod up . --id "$(DEVPOD_ID)" --ide "$(IDE)" $$( [ "$(RECREATE)" = "true" ] && echo "--recreate" ); \
 	fi
+
+stop-devcontainer:
+	@./devpod stop $(DEVPOD_ID) || echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_WARNING)warning$(COLOR_RESET) No running Devpod containers found."
+
+remove-devcontainer:
+	@./devpod delete $(DEVPOD_ID) || echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_WARNING)warning$(COLOR_RESET) No Devpod containers found to remove."
 
 uninstall-devpod:
 	@if [ -f "$(DEVCLI)" ]; then \
