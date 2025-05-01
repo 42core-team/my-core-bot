@@ -2,11 +2,11 @@
   <img src="https://avatars.githubusercontent.com/u/147154505?s=200&v=4" alt="CORE Logo" width="150">
 </p>
 
-# 🌟 CORE REPO
+# 🌟 CORE RUSH02 REPO
 
 ## 🎉 Good Luck, Have Fun, and RTFM!1!!1 🚀
 
-Welcome to the **CORE** project repository! We’re excited to have you on board for this coding adventure.
+Welcome to the **CORE** Rush 02 project repository! We’re excited to have you on board for this coding adventure.
 
 ### 📚 Useful Links
 - **Official CORE Wiki**: [wiki.coregame.de](https://wiki.coregame.de/#/)
@@ -33,11 +33,11 @@ This command will:
 > make devcontainer IDE=zed
 > ```
 
-📋 **Default IDE**: `vscode`  
-🧰 **Supported IDEs**: `vscode`, `openvscode`, `cursor`, `zed`, `codium`, `intellij`, `pycharm`, `phpstorm`,  
-`rider`, `fleet`, `goland`, `webstorm`, `rustrover`, `rubymine`, `clion`, `dataspell`, `jupyternotebook`,  
+📋 **Default IDE**: `vscode`
+🧰 **Supported IDEs**: `vscode`, `openvscode`, `cursor`, `zed`, `codium`, `intellij`, `pycharm`, `phpstorm`,
+`rider`, `fleet`, `goland`, `webstorm`, `rustrover`, `rubymine`, `clion`, `dataspell`, `jupyternotebook`,
 `vscode-insiders`, `positron`, `rstudio`
 
 ### 💡 Pro Tip
-> **Having trouble pushing from inside VSCode when using the Dev Container?**  
+> **Having trouble pushing from inside VSCode when using the Dev Container?**
 > Just switch to your regular terminal outside of VSCode and push from there. 🖥️🔄
