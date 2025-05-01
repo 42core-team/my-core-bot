@@ -49,7 +49,7 @@ stop:
 	@pkill starlord > /dev/null || true
 
 update:
-	@docker compose --project-directory=./.devcontainer pull
+	docker compose --project-directory=./.devcontainer pull
 
 .PHONY: run debug battle $(TARGET) clean fclean re stop update
 
