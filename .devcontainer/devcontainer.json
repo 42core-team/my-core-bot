@@ -41,7 +41,10 @@
 				"ms-vscode.cpptools"
 			],
 			"settings": {
-				"remote.autoForwardPorts": false
+				"remote.autoForwardPorts": false,
+				"security.workspace.trust.enabled": true,
+				"security.workspace.trust.untrustedFiles": "open",
+				"security.workspace.trust.emptyWindow": true
 			}
 		}
 	}

@@ -8,11 +8,17 @@
 
 Welcome to the **CORE** Rush 02 project repository! We’re excited to have you on board for this coding adventure.
 
+### 🚀 Quick Start Guide
+
+1. Clone the repository and set up your dev container:
+   ```bash
+   git clone git@github.com:42core-team/my-core-bot.git && cd my-core-bot && make devcontainer
+   ```
+2. Run `make` in the terminal to test.
+3. Open [localhost](http://localhost) in your browser to see the gameplay.
+
 ### 📚 Useful Links
 - **Official CORE Wiki**: [wiki.coregame.de](https://wiki.coregame.de/#/)
-
-### 🧑‍💻 Get Started
-- Head over to **`src/main.c`** to dive into the code and start building!
 
 ### 🛠️ Spin Up Your Dev Container
 
@@ -23,9 +29,9 @@ make devcontainer
 ```
 
 This command will:
-1. Automatically download and install the **Devpod CLI** (if it’s not already there)
-2. Ensure **Docker** is up and running
-3. Set up the **Docker provider** for Devpod
+1. Automatically download and install the **Devpod CLI** (if it’s not already there).
+2. Ensure **Docker** is up and running (it will attempt to start Docker on 42 iMacs if it’s not started).
+3. Set up the **Docker provider** for Devpod.
 4. Launch your preferred IDE inside a fully configured **Dev Container**
 
 > 💡 **Tip**: You can specify your favorite IDE by passing the `IDE` variable. For example:
