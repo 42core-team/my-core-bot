@@ -7,7 +7,7 @@ services:
     stdin_open: true
 
   visualizer:
-    image: ghcr.io/42core-team/visualizer:dev
+    image: ghcr.io/42core-team/visualizer:event-01
     environment:
       PORT: 80
       SOCKET_SERVER: "my-core-bot-rush:4242"
