@@ -17,7 +17,7 @@
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/cirolosapio/devcontainers-features/alpine-docker-outside-of-docker:0": {}
+		// "ghcr.io/cirolosapio/devcontainers-features/alpine-docker-outside-of-docker:0": {}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
