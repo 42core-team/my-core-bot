@@ -1,13 +1,13 @@
 services:
   my-core-bot:
-    image: ghcr.io/42core-team/my-core-bot:dev
+    image: ghcr.io/42core-team/my-core-bot:event-02
     platform: linux/amd64
     volumes:
       - ..:/workspace:cached
     stdin_open: true
 
   visualizer:
-    image: ghcr.io/42core-team/visualizer:dev
+    image: ghcr.io/42core-team/visualizer:event-02
     environment:
       PORT: 80
       SOCKET_SERVER: "my-core-bot:4242"
