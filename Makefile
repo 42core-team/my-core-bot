@@ -1,7 +1,7 @@
 SRC_DIR = src
 BUILD_DIR = build
 CORE_DIR = /core
-INCLUDES = -I include -I /core
+INCLUDES = -I inc -I /core
 HEADERS = $(shell find include -name '*.h' 2>/dev/null) $(shell find /core -name '*.h' 2>/dev/null)
 LIBS = /core/con_lib.a
 
@@ -10,21 +10,19 @@ OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 TARGET = bot
 CXX = cc
-CXXFLAGS = -Werror -Wall -Wextra $(INCLUDES)
-LDFLAGS = $(LIBS)
+CXXFLAGS = -Wall -Wextra -Werror -lm -g -fsanitize=address $(INCLUDES)
+LDFLAGS = $(LIBS) -fsanitize=address
 
 PLAYER1_ID := 10
 PLAYER2_ID := 20
 
 run: $(TARGET)
-	$(CORE_DIR)/game $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
-	$(CORE_DIR)/starlord $(PLAYER1_ID) > /dev/null &
+	$(CORE_DIR)/core ./config.json ./replays/ $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
 	./$(TARGET) $(PLAYER2_ID)
 
 debug: $(TARGET)
 	./$(TARGET) $(PLAYER2_ID) > /dev/null &
-	$(CORE_DIR)/starlord $(PLAYER1_ID) > /dev/null &
-	$(CORE_DIR)/game $(PLAYER1_ID) $(PLAYER2_ID)
+	$(CORE_DIR)/core ./config.json ./replays/ $(PLAYER1_ID) $(PLAYER2_ID)
 
 build: $(TARGET)
 
@@ -44,9 +42,9 @@ fclean: clean
 re: fclean run
 
 stop:
-	@pkill game > /dev/null || true &
+	@pkill core > /dev/null || true &
 	@pkill bot > /dev/null || true &
-	@pkill starlord > /dev/null || true
+	@pkill gridmaster > /dev/null || true
 
 update:
 	@docker compose --project-directory=./.devcontainer pull
