@@ -17,14 +17,19 @@ PLAYER1_ID := 10
 PLAYER2_ID := 20
 
 run: $(TARGET)
-	$(CORE_DIR)/core ./config.json ./replays/ $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
+	$(CORE_DIR)/core ./config.json ./replays/ /core/data $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
+	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
 	./$(TARGET) $(PLAYER2_ID)
 
 debug: $(TARGET)
 	./$(TARGET) $(PLAYER2_ID) > /dev/null &
-	$(CORE_DIR)/core ./config.json ./replays/ $(PLAYER1_ID) $(PLAYER2_ID)
+	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
+	$(CORE_DIR)/core ./config.json ./replays/ /core/data $(PLAYER1_ID) $(PLAYER2_ID)
 
 build: $(TARGET)
+
+build-gridmaster:
+	make -C gridmaster
 
 $(TARGET): stop $(OBJS)
 	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
