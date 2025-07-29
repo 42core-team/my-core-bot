@@ -4,13 +4,15 @@ services:
     platform: linux/amd64
     volumes:
       - ..:/workspace:cached
+      - replays:/workspace/replays
     stdin_open: true
 
   visualizer:
-    image: ghcr.io/42core-team/visualizer:dev
-    environment:
-      PORT: 80
-      SOCKET_SERVER: "my-core-bot:4242"
-      HOST: "127.0.0.1:80"
+    image: ghcr.io/42core-team/debug-visualizer:dev
     ports:
-      - 80:80
+      - 4242:80
+    volumes:
+      - replays:/usr/share/nginx/html/misc
+
+volumes:
+  replays:
