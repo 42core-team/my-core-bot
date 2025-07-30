@@ -16,17 +16,17 @@ LDFLAGS = $(LIBS) -fsanitize=address
 PLAYER1_ID := 10
 PLAYER2_ID := 20
 
-run: $(TARGET)
-	$(CORE_DIR)/core ./config.json ./replays/ /core/data $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
+run: build
+	$(CORE_DIR)/core /workspace/configs/server-config.json $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
 	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
 	./$(TARGET) $(PLAYER2_ID)
 
-debug: $(TARGET)
+debug: build
 	./$(TARGET) $(PLAYER2_ID) > /dev/null &
 	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
-	$(CORE_DIR)/core ./config.json ./replays/ /core/data $(PLAYER1_ID) $(PLAYER2_ID)
+	$(CORE_DIR)/core /workspace/configs/server-config.json $(PLAYER1_ID) $(PLAYER2_ID)
 
-build: $(TARGET)
+build: $(TARGET) build-gridmaster
 
 build-gridmaster:
 	make -C gridmaster
@@ -39,9 +39,11 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean: stop
+	make -C gridmaster clean
 	rm -rf $(BUILD_DIR)
 
 fclean: clean
+	make -C gridmaster fclean
 	rm -rf $(TARGET)
 
 re: fclean run
@@ -54,7 +56,7 @@ stop:
 update:
 	@docker compose --project-directory=./.devcontainer pull
 
-.PHONY: run debug battle $(TARGET) clean fclean re stop update
+.PHONY: run debug battle $(TARGET) clean fclean re stop update build-gridmaster
 
 
 # Devpod CLI executable

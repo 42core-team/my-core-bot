@@ -5,6 +5,9 @@
 #include <math.h>
 #include <stdbool.h>
 
+#define PATHFINDING_DEBUG 0
+
+
 int ft_util_distance(t_pos pos1, t_pos pos2);
 
 typedef struct s_node {
@@ -65,7 +68,7 @@ static unsigned long movement_cost(t_pos pos, t_obj *unit)
 	}
 	else if (obj->type == OBJ_MONEY)
 	{
-		if (unit->s_unit.unit_type == UNIT_CARRIER)
+		if (unit->s_unit.unit_type == UNIT_CARRIER || unit->s_unit.unit_type == UNIT_MINER)
 			return 1;
 		else
 			return ULONG_MAX / 2;
@@ -75,8 +78,8 @@ static unsigned long movement_cost(t_pos pos, t_obj *unit)
 
 t_pos *find_path(t_pos start, t_pos target, t_obj *unit, int *path_length)
 {
-	unsigned long width = game.config.width;
-	unsigned long height = game.config.height;
+	unsigned long width = game.config.gridSize;
+	unsigned long height = game.config.gridSize;
 	int total = width * height;
 	t_node *nodes = malloc(total * sizeof(t_node));
 	if (!nodes)
@@ -176,4 +179,95 @@ t_pos *find_path(t_pos start, t_pos target, t_obj *unit, int *path_length)
 	*path_length = count;
 	free(nodes);
 	return path;
+}
+
+void ft_travel_to_pos(t_obj *unit, t_pos pos)
+{
+	bool biggestAxisX = abs(unit->pos.x - pos.x) > abs(unit->pos.y - pos.y);
+	if (biggestAxisX)
+	{
+		if (unit->pos.x < pos.x)
+			core_action_move(unit, (t_pos){unit->pos.x - 1, unit->pos.y});
+		else if (unit->pos.x > pos.x)
+			core_action_move(unit, (t_pos){unit->pos.x + 1, unit->pos.y});
+	}
+	else
+	{
+		if (unit->pos.y < pos.y)
+			core_action_move(unit, (t_pos){unit->pos.x, unit->pos.y + 1});
+		else if (unit->pos.y > pos.y)
+			core_action_move(unit, (t_pos){unit->pos.x, unit->pos.y - 1});
+	}
+}
+
+void move_unit_to(t_obj *unit, t_pos target)
+{
+	t_pos *path;
+	int path_length;
+
+	#if PATHFINDING_DEBUG
+		printf("[PTHF] moving unit %lu from (%d,%d) to (%d,%d)\n",
+			unit->id, (int)unit->pos.x, (int)unit->pos.y,
+			(int)target.x, (int)target.y);
+	#endif
+
+	path = find_path(unit->pos, target, unit, &path_length);
+	if (!path) {
+		#if PATHFINDING_DEBUG
+			printf("[PTHF] no path found for unit %lu from (%d,%d) to (%d,%d)\n",
+				unit->id, (int)unit->pos.x, (int)unit->pos.y,
+				(int)target.x, (int)target.y);
+		#endif
+		return;
+	}
+
+	#if PATHFINDING_DEBUG
+		printf("[PTHF] path found for unit %lu from (%d,%d) to (%d,%d), length=%d\n",
+			unit->id, (int)unit->pos.x, (int)unit->pos.y,
+			(int)target.x, (int)target.y, path_length);
+		for (int i = 0; i < path_length; i++) {
+			printf("(%d,%d)%s",
+					(int)path[i].x, (int)path[i].y,
+					(i + 1 < path_length) ? " → " : "\n");
+		}
+	#endif
+
+	if (path_length > 1)
+	{
+		t_pos  next = path[1];
+		t_obj *obj  = core_get_obj_from_pos(next);
+
+		if (obj && obj->type == OBJ_UNIT &&
+			obj->s_unit.team_id == unit->s_unit.team_id)
+		{
+			free(path);
+			#if PATHFINDING_DEBUG
+				printf("[PTHF] found friendly unit at (%d,%d), skipping move\n",
+					(int)obj->pos.x, (int)obj->pos.y);
+			#endif
+			return;
+		}
+		if (obj && obj->type == OBJ_CORE &&
+			obj->s_core.team_id == unit->s_unit.team_id)
+		{
+			free(path);
+			#if PATHFINDING_DEBUG
+				printf("[PTHF] found friendly core at (%d,%d), skipping move\n",
+					(int)obj->pos.x, (int)obj->pos.y);
+			#endif
+			return;
+		}
+
+		#if PATHFINDING_DEBUG
+		printf("[PTHF] moving unit to (%d,%d)\n", (int)next.x, (int)next.y);
+		#endif
+		core_action_move(unit, next);
+		core_action_attack(unit, next);
+	}
+	else
+	{
+		core_action_move(unit, target);
+	}
+
+	free(path);
 }
