@@ -1,7 +1,7 @@
 SRC_DIR = src
 BUILD_DIR = build
 CORE_DIR = /core
-INCLUDES = -I include -I /core
+INCLUDES = -I inc -I /core
 HEADERS = $(shell find include -name '*.h' 2>/dev/null) $(shell find /core -name '*.h' 2>/dev/null)
 LIBS = /core/con_lib.a
 
@@ -10,23 +10,29 @@ OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 TARGET = bot
 CXX = cc
-CXXFLAGS = -Werror -Wall -Wextra $(INCLUDES)
-LDFLAGS = $(LIBS)
+CXXFLAGS = -Wall -Wextra -Werror -lm -g -fsanitize=address $(INCLUDES)
+LDFLAGS = $(LIBS) -fsanitize=address
 
 PLAYER1_ID := 10
 PLAYER2_ID := 20
 
-run: $(TARGET)
-	$(CORE_DIR)/game $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
-	$(CORE_DIR)/starlord $(PLAYER1_ID) > /dev/null &
+run: build
+	@echo ""
+	@echo "$(COLOR_INFO)🎮 Visualizer is running at: $(COLOR_RESET)\033]8;;http://localhost:4242\033\\http://localhost:4242\033]8;;\033\\"
+	@echo ""
+	$(CORE_DIR)/core /workspace/configs/server-config.json $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
+	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
 	./$(TARGET) $(PLAYER2_ID)
 
-debug: $(TARGET)
+debug: build
 	./$(TARGET) $(PLAYER2_ID) > /dev/null &
-	$(CORE_DIR)/starlord $(PLAYER1_ID) > /dev/null &
-	$(CORE_DIR)/game $(PLAYER1_ID) $(PLAYER2_ID)
+	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
+	$(CORE_DIR)/core /workspace/configs/server-config.json $(PLAYER1_ID) $(PLAYER2_ID)
 
-build: $(TARGET)
+build: $(TARGET) build-gridmaster
+
+build-gridmaster:
+	make -C gridmaster
 
 $(TARGET): stop $(OBJS)
 	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
@@ -36,22 +42,24 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean: stop
+	make -C gridmaster clean
 	rm -rf $(BUILD_DIR)
 
 fclean: clean
+	make -C gridmaster fclean
 	rm -rf $(TARGET)
 
 re: fclean run
 
 stop:
-	@pkill game > /dev/null || true &
+	@pkill core > /dev/null || true &
 	@pkill bot > /dev/null || true &
-	@pkill starlord > /dev/null || true
+	@pkill gridmaster > /dev/null || true
 
 update:
 	@docker compose --project-directory=./.devcontainer pull
 
-.PHONY: run debug battle $(TARGET) clean fclean re stop update
+.PHONY: run debug battle $(TARGET) clean fclean re stop update build-gridmaster
 
 
 # Devpod CLI executable
