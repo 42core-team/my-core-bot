@@ -17,6 +17,9 @@ PLAYER1_ID := 10
 PLAYER2_ID := 20
 
 run: build
+	@echo ""
+	@echo "$(COLOR_INFO)🎮 Visualizer is running at: $(COLOR_RESET)\033]8;;http://localhost:4242\033\\http://localhost:4242\033]8;;\033\\"
+	@echo ""
 	$(CORE_DIR)/core /workspace/configs/server-config.json $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
 	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
 	./$(TARGET) $(PLAYER2_ID)
