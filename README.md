@@ -12,7 +12,7 @@ Welcome to the **CORE** project repository! We’re excited to have you on board
 
 1. Clone the repository and set up your dev container:
    ```bash
-   git clone git@github.com:42core-team/my-core-bot.git && cd my-core-bot && make devcontainer
+   git clone your-repo-url && cd my-core-bot && make devcontainer
    ```
 2. Run `make` in the terminal to test.
 3. Open [localhost](http://localhost) in your browser to see the gameplay.
@@ -39,9 +39,9 @@ This command will:
 > make devcontainer IDE=zed
 > ```
 
-📋 **Default IDE**: `vscode`  
-🧰 **Supported IDEs**: `vscode`, `openvscode`, `cursor`, `zed`, `codium`, `intellij`, `pycharm`, `phpstorm`,  
-`rider`, `fleet`, `goland`, `webstorm`, `rustrover`, `rubymine`, `clion`, `dataspell`, `jupyternotebook`,  
+📋 **Default IDE**: `vscode`
+🧰 **Supported IDEs**: `vscode`, `openvscode`, `cursor`, `zed`, `codium`, `intellij`, `pycharm`, `phpstorm`,
+`rider`, `fleet`, `goland`, `webstorm`, `rustrover`, `rubymine`, `clion`, `dataspell`, `jupyternotebook`,
 `vscode-insiders`, `positron`, `rstudio`
 
 #### 🛑 Stop the Dev Container
