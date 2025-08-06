@@ -56,7 +56,7 @@ stop:
 	@pkill bot > /dev/null || true &
 	@pkill gridmaster > /dev/null || true
 
-update:
+update: stop-devcontainer remove-devcontainer
 	@docker compose --project-directory=./.devcontainer pull
 
 .PHONY: run debug battle $(TARGET) clean fclean re stop update build-gridmaster
