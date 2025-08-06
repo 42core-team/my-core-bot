@@ -34,7 +34,7 @@ void ft_on_tick(unsigned long tick)
 	{
 		core_action_createUnit(nextUnit);
 		nextUnit++;
-		if (nextUnit > 2)
+		if (nextUnit > 1)
 			nextUnit = 0;
 	}
 
