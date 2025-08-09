@@ -3,7 +3,7 @@ services:
     image: ghcr.io/42core-team/my-core-bot:dev
     platform: linux/amd64
     volumes:
-      - ..:/workspace:cached
+      - ..:/workspace
       - replays:/workspace/replays
     stdin_open: true
 
