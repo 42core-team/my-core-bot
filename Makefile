@@ -64,7 +64,7 @@ update: stop-devcontainer remove-devcontainer
 
 # Devpod CLI executable
 DEVCLI := ./devpod
-DEVPOD_ID := my-core-bot-$(shell basename $(CURDIR) | tr '[:upper:]_' '[:lower:]-')
+DEVPOD_ID := $(shell echo "my-core-bot-$(shell basename $(CURDIR) | tr '[:upper:]_' '[:lower:]-')" | cut -c1-40)-$(shell echo "$(CURDIR)" | shasum | cut -c1-7)
 # Default to vscode if none is specified
 IDE ?= vscode
 
