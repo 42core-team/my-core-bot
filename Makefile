@@ -64,7 +64,7 @@ update: stop-devcontainer remove-devcontainer
 
 # Devpod CLI executable
 DEVCLI := ./devpod
-DEVPOD_ID := my-core-bot
+DEVPOD_ID := my-core-bot-$(shell basename $(CURDIR) | tr '[:upper:]_' '[:lower:]-')
 # Default to vscode if none is specified
 IDE ?= vscode
 
@@ -169,10 +169,34 @@ __launch-devpod:
 	@echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Errors resulting from the docker compose pull cmd can be safely ignored"
 	@if [ "$(IDE)" = "web" ]; then \
 		echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Launching Devpod in web mode (no local IDE)."; \
-		./devpod up . --id "$(DEVPOD_ID)" $$( [ "$(RECREATE)" = "true" ] && echo "--recreate" ); \
+		if ! ./devpod up . --id "$(DEVPOD_ID)" $$( [ "$(RECREATE)" = "true" ] && echo "--recreate" ); then \
+			echo ""; \
+			echo "$(COLOR_ERROR)❌ Failed to start devcontainer!$(COLOR_RESET)"; \
+			echo "$(COLOR_WARNING)⚠️  This is likely due to port conflicts (port 4000 already in use).$(COLOR_RESET)"; \
+			echo ""; \
+			echo "$(COLOR_INFO)💡 Try one of these solutions:$(COLOR_RESET)"; \
+			echo "   1. Stop other devcontainers: $(COLOR_INFO)make stop-devcontainer$(COLOR_RESET)"; \
+			echo "   2. Stop all Docker containers: $(COLOR_INFO)docker stop $$(docker ps -q)$(COLOR_RESET)"; \
+			echo "   3. Check what's using port 4000: $(COLOR_INFO)lsof -i :4000$(COLOR_RESET)"; \
+			echo "   4. Recreate the devcontainer: $(COLOR_INFO)make devcontainer RECREATE=true$(COLOR_RESET)"; \
+			echo ""; \
+			exit 1; \
+		fi; \
 	else \
 		echo "$(COLOR_DATE)$$(date +'%H:%M:%S')$(COLOR_RESET) $(COLOR_INFO)info$(COLOR_RESET) Launching Devpod with IDE: $(IDE)"; \
-		./devpod up . --id "$(DEVPOD_ID)" --ide "$(IDE)" $$( [ "$(RECREATE)" = "true" ] && echo "--recreate" ); \
+		if ! ./devpod up . --id "$(DEVPOD_ID)" --ide "$(IDE)" $$( [ "$(RECREATE)" = "true" ] && echo "--recreate" ); then \
+			echo ""; \
+			echo "$(COLOR_ERROR)❌ Failed to start devcontainer!$(COLOR_RESET)"; \
+			echo "$(COLOR_WARNING)⚠️  This is likely due to port conflicts (port 4000 already in use).$(COLOR_RESET)"; \
+			echo ""; \
+			echo "$(COLOR_INFO)💡 Try one of these solutions:$(COLOR_RESET)"; \
+			echo "   1. Stop other devcontainers: $(COLOR_INFO)make stop-devcontainer$(COLOR_RESET)"; \
+			echo "   2. Stop all Docker containers: $(COLOR_INFO)docker stop $$(docker ps -q)$(COLOR_RESET)"; \
+			echo "   3. Check what's using port 4000: $(COLOR_INFO)lsof -i :4000$(COLOR_RESET)"; \
+			echo "   4. Recreate the devcontainer: $(COLOR_INFO)make devcontainer RECREATE=true$(COLOR_RESET)"; \
+			echo ""; \
+			exit 1; \
+		fi; \
 	fi
 
 stop-devcontainer:
