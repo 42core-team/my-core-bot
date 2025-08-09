@@ -9,5 +9,5 @@ int	main(int argc, char **argv)
 
 void ft_on_tick(unsigned long tick)
 {
-	(void)tick;
+	printf("-----> [⚡️ TICK %ld🔥]\n", tick);
 }
