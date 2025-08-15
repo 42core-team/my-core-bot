@@ -18,7 +18,7 @@ Welcome to the **CORE** project repository! We’re excited to have you on board
 3. Open [localhost](http://localhost) in your browser to see the gameplay.
 
 ### 📚 Useful Links
-- **Official CORE Wiki**: [wiki.coregame.de](https://wiki.coregame.de/#/)
+- **Official CORE Wiki**: [coregame.de/wiki](https://coregame.de/wiki)
 
 ### 🛠️ Spin Up Your Dev Container
 
