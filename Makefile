@@ -10,8 +10,8 @@ OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 TARGET = bot
 CXX = cc
-CXXFLAGS = -Wall -Wextra -Werror -lm -g -fsanitize=address $(INCLUDES)
-LDFLAGS = $(LIBS) -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -g -fsanitize=address $(INCLUDES)
+LDFLAGS = $(LIBS) -fsanitize=address -lm
 
 PLAYER1_ID := 10
 PLAYER2_ID := 20
