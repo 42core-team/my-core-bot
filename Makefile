@@ -1,14 +1,16 @@
-SRC_DIR = src
+SRC_DIR = my-core-bot/src
 BUILD_DIR = build
 CORE_DIR = /core
-INCLUDES = -I inc -I /core
+
+INCLUDES = -I my-core-bot/inc -I /core
 HEADERS = $(shell find include -name '*.h' 2>/dev/null) $(shell find /core -name '*.h' 2>/dev/null)
-LIBS = /core/con_lib.a
+
+LIBS = /core/core_lib.a
 
 SRCS = $(shell find $(SRC_DIR) -name '*.c' 2>/dev/null)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
-TARGET = bot
+TARGET = my-core-bot/bot
 CXX = cc
 CXXFLAGS = -Wall -Wextra -Werror -g -fsanitize=address $(INCLUDES)
 LDFLAGS = $(LIBS) -fsanitize=address -lm
@@ -29,7 +31,8 @@ debug: build build-gridmaster
 	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
 	$(CORE_DIR)/core /workspace/configs/server-config.json $(PLAYER1_ID) $(PLAYER2_ID)
 
-build: $(TARGET)
+build:
+	make -C my-core-bot
 
 build-gridmaster:
 	make -C gridmaster
@@ -43,11 +46,11 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 
 clean: stop
 	make -C gridmaster clean
-	rm -rf $(BUILD_DIR)
+	make -C my-core-bot clean
 
 fclean: clean
 	make -C gridmaster fclean
-	rm -rf $(TARGET)
+	make -C my-core-bot fclean
 
 re: fclean run
 
@@ -59,7 +62,7 @@ stop:
 update: stop-devcontainer remove-devcontainer
 	@docker compose --project-directory=./.devcontainer pull
 
-.PHONY: run debug battle $(TARGET) clean fclean re stop update build-gridmaster
+.PHONY: run debug battle $(TARGET) clean fclean re stop update build-gridmaster build
 
 
 # Devpod CLI executable

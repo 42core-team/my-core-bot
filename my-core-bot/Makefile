@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wextra -Werror -lm -g -fsanitize=address
 CONNECTIONDIR ?= /core
 LIBS = $(CONNECTIONDIR)/core_lib.a
 INC = -I inc -I $(CONNECTIONDIR)/inc
-EXEC = gridmaster
+EXEC = bot
 .PHONY: all run clean fclean re $(EXEC)
 
 all: build $(EXEC)
