@@ -16,7 +16,7 @@ all: build $(EXEC)
 run: all
 	./$(EXEC)
 
-$(EXEC): $(OBJS)
+$(EXEC): $(OBJS) $(LIBS)
 	$(CC) $(CFLAGS) $^ -o $@ -L $(CONNECTIONDIR) $(INC) $(LIBS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

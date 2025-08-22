@@ -44,36 +44,36 @@ static bool is_unit_opponent(const t_obj *obj)
 t_obj *ft_get_core_own(void)
 {
 	t_pos pos = {0, 0}; // Position doesn't matter for this search
-	return core_get_obj_customCondition_nearest(pos, is_core_own);
+	return core_get_obj_filter_nearest(pos, is_core_own);
 }
 t_obj *ft_get_core_opponent(void)
 {
 	t_pos pos = {0, 0}; // Position doesn't matter for this search
-	return core_get_obj_customCondition_nearest(pos, is_core_opponent);
+	return core_get_obj_filter_nearest(pos, is_core_opponent);
 }
 
 t_obj *ft_get_resource_nearest(t_pos pos)
 {
-	return core_get_obj_customCondition_nearest(pos, is_resource);
+	return core_get_obj_filter_nearest(pos, is_resource);
 }
 t_obj *ft_get_money_nearest(t_pos pos)
 {
-	return core_get_obj_customCondition_nearest(pos, is_money);
+	return core_get_obj_filter_nearest(pos, is_money);
 }
 t_obj *ft_get_resource_money_nearest(t_pos pos)
 {
-	return core_get_obj_customCondition_nearest(pos, is_resource_money);
+	return core_get_obj_filter_nearest(pos, is_resource_money);
 }
 
 t_obj **ft_get_units_own(void)
 {
-	return core_get_objs_customCondition(is_unit_own);
+	return core_get_objs_filter(is_unit_own);
 }
 t_obj **ft_get_units_opponent(void)
 {
-	return core_get_objs_customCondition(is_unit_opponent);
+	return core_get_objs_filter(is_unit_opponent);
 }
 t_obj *ft_get_units_opponent_nearest(t_pos pos)
 {
-	return core_get_obj_customCondition_nearest(pos, is_unit_opponent);
+	return core_get_obj_filter_nearest(pos, is_unit_opponent);
 }
