@@ -2,7 +2,8 @@
 	"gameConfigFilePath": "/workspace/configs/game-config.json",
 	"replayFolderPaths": [
 		"/workspace/replays",
-		"/workspaces/monorepo/."
+		"/workspaces/monorepo",
+		"/workspaces/monorepo/visualizer/public/misc"
 	],
 	"dataFolderPath": "/core/data",
 	"timeoutTicks": 3000,
