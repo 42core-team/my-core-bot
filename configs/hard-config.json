@@ -17,9 +17,8 @@
 	"bombDamage": 50,
 	"worldGenerator": "jigsaw",
 	"worldGeneratorConfig": {
-		"templatePlaceAttemptCount": 1000,
+		"templatePlaceAttemptCount": 5000,
 		"additionalWallPlaceAttemptCount": 50,
-		"mirrorMap": true,
 		"resourceCount": 35,
 		"moneysCount": 25,
 		"minTemplateSpacing": 1,
