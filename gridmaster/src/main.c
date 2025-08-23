@@ -30,7 +30,7 @@ void move_and_attack(t_obj *unit, t_pos target_pos)
 	t_obj *next_pos_obj = core_get_obj_from_pos(next_pos);
 	if (next_pos_obj)
 	{
-		if (next_pos_obj->type == OBJ_MONEY)
+		if (next_pos_obj->type == OBJ_GEM_PILE)
 			core_action_move(unit, next_pos);
 		else
 			core_action_attack(unit, next_pos);
@@ -48,7 +48,7 @@ void ft_on_tick(unsigned long tick)
 	(void)tick;
 
 	// spawn new unit
-	if (ft_get_core_own() && ft_get_core_own()->s_core.balance >= core_get_unitConfig(target_unit)->cost)
+	if (ft_get_core_own() && ft_get_core_own()->s_core.gems >= core_get_unitConfig(target_unit)->cost)
 	{
 		core_action_createUnit(target_unit);
 		target_unit++;
@@ -76,12 +76,12 @@ void ft_on_tick(unsigned long tick)
 
 			case UNIT_MINER:
 				t_obj *nearest_resource_or_money = ft_get_resource_money_nearest(obj->pos);
-				if (nearest_resource_or_money && obj->s_unit.balance <= 0)
+				if (nearest_resource_or_money && obj->s_unit.gems <= 0)
 					move_and_attack(obj, nearest_resource_or_money->pos);
 				else
 				{
 					move_and_attack(obj, ft_get_core_own()->pos);
-					core_action_transferMoney(obj, ft_get_core_own()->pos, 9999999);
+					core_action_transferGems(obj, ft_get_core_own()->pos, 9999999);
 				}
 				break;
 		}

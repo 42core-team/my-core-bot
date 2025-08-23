@@ -15,11 +15,11 @@ static bool is_core_opponent(const t_obj *obj)
 
 static bool is_resource(const t_obj *obj)
 {
-	return (obj->type == OBJ_RESOURCE && obj->state == STATE_ALIVE);
+	return (obj->type == OBJ_DEPOSIT && obj->state == STATE_ALIVE);
 }
 static bool is_money(const t_obj *obj)
 {
-	return (obj->type == OBJ_MONEY && obj->state == STATE_ALIVE);
+	return (obj->type == OBJ_GEM_PILE && obj->state == STATE_ALIVE);
 }
 static bool is_resource_money(const t_obj *obj)
 {
