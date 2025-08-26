@@ -2,9 +2,10 @@
 	"replayFolderPaths": [
 		"/workspace/replays",
 		"/workspaces/monorepo",
-		"/workspaces/monorepo/visualizer/public/misc"
+		"/workspaces/monorepo/visualizer/public/misc",
+		"./replays"
 	],
-	"dataFolderPath": "/workspaces/monorepo/server/data",
+	"dataFolderPath": "./data",
 	"timeoutTicks": 3000,
 	"timeoutMs": 30000,
 	"clientWaitTimeoutMs": 500,
