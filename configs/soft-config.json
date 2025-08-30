@@ -14,7 +14,9 @@
 	"bombCountdown": 10,
 	"bombThrowCost": 50,
 	"bombReach": 3,
-	"bombDamage": 50,
+	"bombDamageCore": 50,
+	"bombDamageUnit": 30,
+	"bombDamageDeposit": 40,
 	"worldGenerator": "sparse",
 	"worldGeneratorConfig": {
 		"depositCount": 20,

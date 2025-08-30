@@ -14,7 +14,9 @@
 	"bombCountdown": 10,
 	"bombThrowCost": 25,
 	"bombReach": 3,
-	"bombDamage": 50,
+	"bombDamageCore": 20,
+	"bombDamageUnit": 14,
+	"bombDamageDeposit": 25,
 	"worldGenerator": "jigsaw",
 	"worldGeneratorConfig": {
 		"templatePlaceAttemptCount": 5000,
@@ -69,7 +71,7 @@
 		{
 			"name": "Builder",
 			"cost": 200,
-			"hp": 30,
+			"hp": 13,
 			"baseActionCooldown": 2,
 			"maxActionCooldown": 8,
 			"damageCore": 5,
