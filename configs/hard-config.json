@@ -10,11 +10,12 @@
 	"initialBalance": 300,
 	"wallHp": 50,
 	"wallBuildCost": 10,
-	"bombHp": 50,
-	"bombCountdown": 10,
+	"bombCountdown": 8,
 	"bombThrowCost": 25,
-	"bombReach": 3,
-	"bombDamage": 50,
+	"bombReach": 2,
+	"bombDamageCore": 20,
+	"bombDamageUnit": 14,
+	"bombDamageDeposit": 25,
 	"worldGenerator": "jigsaw",
 	"worldGeneratorConfig": {
 		"templatePlaceAttemptCount": 5000,
@@ -36,23 +37,25 @@
 			"hp": 25,
 			"baseActionCooldown": 3,
 			"maxActionCooldown": 12,
+			"balancePerCooldownStep": 15,
 			"damageCore": 10,
 			"damageUnit": 6,
 			"damageDeposit": 2,
 			"damageWall": 2,
-			"buildType": 0
+			"buildType": "none"
 		},
 		{
 			"name": "Miner",
 			"cost": 100,
 			"hp": 15,
-			"baseActionCooldown": 5,
-			"maxActionCooldown": 10,
+			"baseActionCooldown": 4,
+			"maxActionCooldown": 8,
+			"balancePerCooldownStep": 30,
 			"damageCore": 4,
 			"damageUnit": 2,
 			"damageDeposit": 10,
 			"damageWall": 12,
-			"buildType": 0
+			"buildType": "none"
 		},
 		{
 			"name": "Carrier",
@@ -60,35 +63,38 @@
 			"hp": 5,
 			"baseActionCooldown": 0,
 			"maxActionCooldown": 0,
+			"balancePerCooldownStep": 999999,
 			"damageCore": 1,
 			"damageUnit": 1,
 			"damageDeposit": 2,
 			"damageWall": 1,
-			"buildType": 0
+			"buildType": "none"
 		},
 		{
 			"name": "Builder",
 			"cost": 200,
-			"hp": 30,
-			"baseActionCooldown": 2,
+			"hp": 13,
+			"baseActionCooldown": 5,
 			"maxActionCooldown": 8,
+			"balancePerCooldownStep": 10,
 			"damageCore": 5,
 			"damageUnit": 3,
 			"damageDeposit": 2,
 			"damageWall": 3,
-			"buildType": 1
+			"buildType": "wall"
 		},
 		{
 			"name": "Bomberman",
-			"cost": 200,
+			"cost": 400,
 			"hp": 8,
-			"baseActionCooldown": 1,
-			"maxActionCooldown": 10,
+			"baseActionCooldown": 4,
+			"maxActionCooldown": 4,
+			"balancePerCooldownStep": 99999,
 			"damageCore": 20,
 			"damageUnit": 10,
 			"damageDeposit": 5,
 			"damageWall": 10,
-			"buildType": 2
+			"buildType": "bomb"
 		}
 	],
 	"corePositions": [

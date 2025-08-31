@@ -1,20 +1,21 @@
 {
 	"gridSize": 20,
 	"seed": 1,
-	"idleIncome": 0,
-	"idleIncomeTimeOut": 0,
+	"idleIncome": 3,
+	"idleIncomeTimeOut": 250,
 	"depositHp": 50,
 	"depositIncome": 200,
 	"gemPileIncome": 75,
 	"coreHp": 200,
-	"initialBalance": 200,
+	"initialBalance": 100,
 	"wallHp": 50,
 	"wallBuildCost": 20,
-	"bombHp": 50,
 	"bombCountdown": 10,
 	"bombThrowCost": 50,
 	"bombReach": 3,
-	"bombDamage": 50,
+	"bombDamageCore": 50,
+	"bombDamageUnit": 30,
+	"bombDamageDeposit": 40,
 	"worldGenerator": "sparse",
 	"worldGeneratorConfig": {
 		"depositCount": 20,
@@ -36,7 +37,7 @@
 			"damageUnit": 6,
 			"damageDeposit": 4,
 			"damageWall": 5,
-			"buildType": 0
+			"buildType": "none"
 		},
 		{
 			"name": "Miner",
@@ -49,7 +50,7 @@
 			"damageUnit": 2,
 			"damageDeposit": 10,
 			"damageWall": 12,
-			"buildType": 0
+			"buildType": "none"
 		},
 		{
 			"name": "Carrier",
@@ -62,17 +63,17 @@
 			"damageUnit": 0,
 			"damageDeposit": 0,
 			"damageWall": 3,
-			"buildType": 0
+			"buildType": "none"
 		}
 	],
 	"corePositions": [
 		{
-			"x": 0,
-			"y": 0
+			"x": 1,
+			"y": 1
 		},
 		{
-			"x": 19,
-			"y": 19
+			"x": 18,
+			"y": 18
 		}
 	]
 }
