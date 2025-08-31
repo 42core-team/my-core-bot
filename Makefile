@@ -15,21 +15,16 @@ CXX = cc
 CXXFLAGS = -Wall -Wextra -Werror -g -fsanitize=address $(INCLUDES)
 LDFLAGS = $(LIBS) -fsanitize=address -lm
 
-PLAYER1_ID := 10
-PLAYER2_ID := 20
+PLAYER1_ID := 42
+PLAYER2_ID := 43
 
 run: build build-gridmaster
 	@echo ""
 	@echo "$(COLOR_INFO)🎮 Visualizer is running at: $(COLOR_RESET)\033]8;;http://localhost:4000\033\\http://localhost:4000\033]8;;\033\\"
 	@echo ""
-	$(CORE_DIR)/core /workspace/configs/server-config.json $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
+	$(CORE_DIR)/server /workspace/configs/server-config.json /workspace/configs/soft-config.json $(CORE_DIR)/data $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
 	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
 	./$(TARGET) $(PLAYER2_ID)
-
-debug: build build-gridmaster
-	./$(TARGET) $(PLAYER2_ID) > /dev/null &
-	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
-	$(CORE_DIR)/core /workspace/configs/server-config.json $(PLAYER1_ID) $(PLAYER2_ID)
 
 build:
 	make -C my-core-bot

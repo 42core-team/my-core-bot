@@ -6,24 +6,21 @@ OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lm -g -fsanitize=address
 CONNECTIONDIR ?= /core
-LIBS = $(CONNECTIONDIR)/core_lib.a
-INC = -I inc -I $(CONNECTIONDIR)/inc
+INC = -I inc -I $(CONNECTIONDIR)
 EXEC = bot
-.PHONY: all run clean fclean re $(EXEC)
 
-all: build $(EXEC)
+all: ensure_obj_dir $(EXEC)
 
 run: all
 	./$(EXEC)
 
-$(EXEC): $(OBJS) $(LIBS)
-	$(CC) $(CFLAGS) $^ -o $@ -L $(CONNECTIONDIR) $(INC) $(LIBS)
+$(EXEC): $(OBJS) $(CONNECTIONDIR)/con_lib.a
+	$(CC) $(CFLAGS) $(OBJS) $(CONNECTIONDIR)/con_lib.a -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
-build:
-	make -C $(CONNECTIONDIR)
+ensure_obj_dir:
 	mkdir -p $(OBJDIR)
 
 clean:
@@ -33,3 +30,5 @@ fclean: clean
 	rm -rf $(EXEC)
 
 re: fclean all
+
+.PHONY: all run clean fclean re $(EXEC) ensure_obj_dir
