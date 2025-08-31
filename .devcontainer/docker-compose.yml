@@ -8,7 +8,7 @@ services:
     stdin_open: true
 
   visualizer:
-    image: ghcr.io/42core-team/debug-visualizer:dev
+    image: ghcr.io/42core-team/visualizer:dev
     ports:
       - 4000:80
     volumes:
