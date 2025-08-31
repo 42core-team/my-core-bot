@@ -10,7 +10,7 @@
 	"initialBalance": 300,
 	"wallHp": 50,
 	"wallBuildCost": 10,
-	"bombCountdown": 10,
+	"bombCountdown": 8,
 	"bombThrowCost": 25,
 	"bombReach": 3,
 	"bombDamageCore": 20,
