@@ -12,7 +12,7 @@ services:
     ports:
       - 4000:80
     volumes:
-      - replays:/usr/share/nginx/html/misc
+      - replays:/usr/share/nginx/html/replays
 
 volumes:
   replays:
