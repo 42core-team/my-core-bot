@@ -1,26 +1,12 @@
-SRC_DIR = my-core-bot/src
-BUILD_DIR = build
 CORE_DIR = /core
-
-INCLUDES = -I my-core-bot/inc -I /core
-HEADERS = $(shell find include -name '*.h' 2>/dev/null) $(shell find /core -name '*.h' 2>/dev/null)
-
-LIBS = /core/core_lib.a
-
-SRCS = $(shell find $(SRC_DIR) -name '*.c' 2>/dev/null)
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
-
 TARGET = my-core-bot/bot
-CXX = cc
-CXXFLAGS = -Wall -Wextra -Werror -g -fsanitize=address $(INCLUDES)
-LDFLAGS = $(LIBS) -fsanitize=address -lm
 
 PLAYER1_ID := 42
 PLAYER2_ID := 43
 
 run: build build-gridmaster
 	@echo ""
-	@echo "$(COLOR_INFO)🎮 Visualizer is running at: $(COLOR_RESET)\033]8;;http://localhost:4000\033\\http://localhost:4000\033]8;;\033\\"
+	@echo "$(COLOR_INFO)🎮 Visualizer is running at: localhost:4000 $(COLOR_RESET)"
 	@echo ""
 	$(CORE_DIR)/server /workspace/configs/server-config.json /workspace/configs/soft-config.json $(CORE_DIR)/data $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
 	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
@@ -31,13 +17,6 @@ build:
 
 build-gridmaster:
 	make -C gridmaster
-
-$(TARGET): stop $(OBJS)
-	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
-
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
-	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean: stop
 	make -C gridmaster clean
