@@ -1,6 +1,6 @@
 {
 	"gridSize": 20,
-	"seed": 1,
+	"seed": "",
 	"idleIncome": 3,
 	"idleIncomeTimeOut": 250,
 	"depositHp": 50,
