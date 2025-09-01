@@ -6,7 +6,7 @@ PLAYER2_ID := 43
 
 run: build build-gridmaster
 	@echo ""
-	@echo "$(COLOR_INFO)🎮 Visualizer is running at: $(COLOR_RESET)\033]8;;http://localhost:4000\033\\http://localhost:4000\033]8;;\033\\"
+	@echo "$(COLOR_INFO)🎮 Visualizer is running at: localhost:4000 $(COLOR_RESET)"
 	@echo ""
 	$(CORE_DIR)/server /workspace/configs/server-config.json /workspace/configs/soft-config.json $(CORE_DIR)/data $(PLAYER1_ID) $(PLAYER2_ID) > /dev/null &
 	./gridmaster/gridmaster $(PLAYER1_ID) > /dev/null &
