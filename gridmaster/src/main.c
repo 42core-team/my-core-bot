@@ -1,7 +1,7 @@
 #include "bot.h"
 
-#include <time.h>
 #include <stdio.h>
+#include <time.h>
 
 void ft_on_tick(unsigned long tick);
 
@@ -45,8 +45,7 @@ void ft_on_tick(unsigned long tick)
 	{
 		core_action_createUnit(target_unit);
 		target_unit++;
-		if (target_unit > 1)
-			target_unit = 0;
+		if (target_unit > 1) target_unit = 0;
 	}
 
 	// move units
@@ -54,8 +53,7 @@ void ft_on_tick(unsigned long tick)
 	for (int i = 0; units && units[i]; i++)
 	{
 		t_obj *obj = units[i];
-		if (obj->state != STATE_ALIVE)
-			continue;
+		if (obj->state != STATE_ALIVE) continue;
 
 		switch ((int)obj->s_unit.unit_type)
 		{

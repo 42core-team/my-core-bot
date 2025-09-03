@@ -2,31 +2,24 @@
 
 static int ft_sign(int num)
 {
-	if (num > 0)
-		return 1;
-	if (num < 0)
-		return -1;
+	if (num > 0) return 1;
+	if (num < 0) return -1;
 	return 0;
 }
 
 static bool ft_is_own_obj(t_obj *obj)
 {
-	if (!obj)
-		return false;
-	if (obj->type == OBJ_UNIT)
-		return obj->s_unit.team_id == game.my_team_id;
-	if (obj->type == OBJ_CORE)
-		return obj->s_core.team_id == game.my_team_id;
+	if (!obj) return false;
+	if (obj->type == OBJ_UNIT) return obj->s_unit.team_id == game.my_team_id;
+	if (obj->type == OBJ_CORE) return obj->s_core.team_id == game.my_team_id;
 	return false;
 }
 
 static bool ft_is_pos_blocked(t_pos pos)
 {
 	t_obj *obj = core_get_obj_from_pos(pos);
-	if (obj)
-		return true;
-	if (pos.x >= game.config.gridSize || pos.y >= game.config.gridSize)
-		return true;
+	if (obj) return true;
+	if (pos.x >= game.config.gridSize || pos.y >= game.config.gridSize) return true;
 	return false;
 }
 
