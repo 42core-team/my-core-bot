@@ -2,14 +2,15 @@
 	"gridSize": 20,
 	"seed": "",
 	"idleIncome": 0,
-	"idleIncomeTimeOut": 600,
+	"idleIncomeTimeOut": 0,
 	"depositHp": 50,
 	"depositIncome": 200,
 	"gemPileIncome": 75,
-	"coreHp": 100,
-	"initialBalance": 300,
-	"wallHp": 50,
+	"coreHp": 99,
+	"initialBalance": 150,
+	"wallHp": 75,
 	"wallBuildCost": 10,
+	"bombHp": 10,
 	"bombCountdown": 8,
 	"bombThrowCost": 25,
 	"bombReach": 2,
@@ -27,7 +28,7 @@
 		"baseDepositIncome": 150,
 		"depositAdditionalIncomePerAdjacentWall": 40,
 		"depositMultiplierIfFullySurrounded": 1.3,
-		"randomDepositIncomeVariation": 30,
+		"randomDepositIncomeVariation": 100,
 		"randomGemPileIncomeVariation": 20
 	},
 	"units": [
@@ -42,6 +43,7 @@
 			"damageUnit": 6,
 			"damageDeposit": 2,
 			"damageWall": 2,
+			"damageBomb": 4,
 			"buildType": "none"
 		},
 		{
@@ -55,6 +57,7 @@
 			"damageUnit": 2,
 			"damageDeposit": 10,
 			"damageWall": 12,
+			"damageBomb": 6,
 			"buildType": "none"
 		},
 		{
@@ -64,10 +67,11 @@
 			"baseActionCooldown": 0,
 			"maxActionCooldown": 0,
 			"balancePerCooldownStep": 999999,
-			"damageCore": 1,
-			"damageUnit": 1,
-			"damageDeposit": 2,
+			"damageCore": 0,
+			"damageUnit": 0,
+			"damageDeposit": 0,
 			"damageWall": 1,
+			"damageBomb": 2,
 			"buildType": "none"
 		},
 		{
@@ -81,6 +85,7 @@
 			"damageUnit": 3,
 			"damageDeposit": 2,
 			"damageWall": 3,
+			"damageBomb": 5,
 			"buildType": "wall"
 		},
 		{
@@ -94,6 +99,7 @@
 			"damageUnit": 10,
 			"damageDeposit": 5,
 			"damageWall": 10,
+			"damageBomb": 1,
 			"buildType": "bomb"
 		}
 	],
