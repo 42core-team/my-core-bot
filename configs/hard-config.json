@@ -34,6 +34,7 @@
 	"units": [
 		{
 			"name": "Warrior",
+			"visualizer_asset_path": "warrior",
 			"cost": 150,
 			"hp": 25,
 			"baseActionCooldown": 3,
@@ -48,6 +49,7 @@
 		},
 		{
 			"name": "Miner",
+			"visualizer_asset_path": "miner",
 			"cost": 100,
 			"hp": 15,
 			"baseActionCooldown": 4,
@@ -62,6 +64,7 @@
 		},
 		{
 			"name": "Carrier",
+			"visualizer_asset_path": "carrier",
 			"cost": 125,
 			"hp": 5,
 			"baseActionCooldown": 0,
@@ -76,6 +79,7 @@
 		},
 		{
 			"name": "Builder",
+			"visualizer_asset_path": "builder",
 			"cost": 200,
 			"hp": 13,
 			"baseActionCooldown": 5,
@@ -90,6 +94,7 @@
 		},
 		{
 			"name": "Bomberman",
+			"visualizer_asset_path": "bomberman",
 			"cost": 400,
 			"hp": 8,
 			"baseActionCooldown": 4,
