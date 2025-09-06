@@ -13,17 +13,17 @@ static bool is_core_opponent(const t_obj *obj)
 	return (is_core(obj) && obj->s_core.team_id != game.my_team_id);
 }
 
-static bool is_resource(const t_obj *obj)
+static bool is_deposit(const t_obj *obj)
 {
 	return (obj->type == OBJ_DEPOSIT && obj->state == STATE_ALIVE);
 }
-static bool is_money(const t_obj *obj)
+static bool is_gems(const t_obj *obj)
 {
 	return (obj->type == OBJ_GEM_PILE && obj->state == STATE_ALIVE);
 }
-static bool is_resource_money(const t_obj *obj)
+static bool is_deposit_gems(const t_obj *obj)
 {
-	return (is_resource(obj) || is_money(obj));
+	return (is_deposit(obj) || is_gems(obj));
 }
 
 static bool is_unit(const t_obj *obj)
@@ -52,17 +52,17 @@ t_obj *ft_get_core_opponent(void)
 	return core_get_obj_filter_nearest(pos, is_core_opponent);
 }
 
-t_obj *ft_get_resource_nearest(t_pos pos)
+t_obj *ft_get_deposit_nearest(t_pos pos)
 {
-	return core_get_obj_filter_nearest(pos, is_resource);
+	return core_get_obj_filter_nearest(pos, is_deposit);
 }
-t_obj *ft_get_money_nearest(t_pos pos)
+t_obj *ft_get_gems_nearest(t_pos pos)
 {
-	return core_get_obj_filter_nearest(pos, is_money);
+	return core_get_obj_filter_nearest(pos, is_gems);
 }
-t_obj *ft_get_resource_money_nearest(t_pos pos)
+t_obj *ft_get_deposit_gems_nearest(t_pos pos)
 {
-	return core_get_obj_filter_nearest(pos, is_resource_money);
+	return core_get_obj_filter_nearest(pos, is_deposit_gems);
 }
 
 t_obj **ft_get_units_own(void)

@@ -66,9 +66,9 @@ void ft_on_tick(unsigned long tick)
 			break;
 
 		case UNIT_MINER:
-			t_obj *nearest_resource_or_money = ft_get_resource_money_nearest(obj->pos);
-			if (nearest_resource_or_money && obj->s_unit.gems <= 0)
-				move_and_attack(obj, nearest_resource_or_money->pos);
+			t_obj *nearest_deposit_or_gems = ft_get_deposit_gems_nearest(obj->pos);
+			if (nearest_deposit_or_gems && obj->s_unit.gems <= 0)
+				move_and_attack(obj, nearest_deposit_or_gems->pos);
 			else
 			{
 				move_and_attack(obj, ft_get_core_own()->pos);

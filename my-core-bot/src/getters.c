@@ -13,7 +13,7 @@ static bool is_core_opponent(const t_obj *obj)
 	return (is_core(obj) && obj->s_core.team_id != game.my_team_id);
 }
 
-static bool is_resource(const t_obj *obj)
+static bool is_deposit(const t_obj *obj)
 {
 	return (obj->type == OBJ_DEPOSIT && obj->state == STATE_ALIVE);
 }
@@ -44,9 +44,9 @@ t_obj *ft_get_core_opponent(void)
 	return core_get_obj_filter_nearest(pos, is_core_opponent);
 }
 
-t_obj *ft_get_resource_nearest(t_pos pos)
+t_obj *ft_get_deposit_nearest(t_pos pos)
 {
-	return core_get_obj_filter_nearest(pos, is_resource);
+	return core_get_obj_filter_nearest(pos, is_deposit);
 }
 
 t_obj **ft_get_units_own(void)

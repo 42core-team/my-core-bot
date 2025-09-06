@@ -25,7 +25,6 @@
 		"gemPileCount": 25,
 		"minTemplateSpacing": 1,
 		"minCoreDistance": 5,
-		"baseDepositIncome": 150,
 		"depositAdditionalIncomePerAdjacentWall": 40,
 		"depositMultiplierIfFullySurrounded": 1.3,
 		"randomDepositIncomeVariation": 100,
