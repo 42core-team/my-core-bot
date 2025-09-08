@@ -1,22 +1,22 @@
 {
-	"gridSize": 20,
-	"seed": "",
-	"idleIncome": 0,
-	"idleIncomeTimeOut": 0,
-	"depositHp": 50,
-	"depositIncome": 200,
-	"gemPileIncome": 75,
-	"coreHp": 99,
-	"initialBalance": 150,
-	"wallHp": 75,
-	"wallBuildCost": 10,
-	"bombHp": 10,
-	"bombCountdown": 8,
-	"bombThrowCost": 25,
-	"bombReach": 2,
-	"bombDamageCore": 20,
-	"bombDamageUnit": 14,
-	"bombDamageDeposit": 25,
+	"gridSize": 20, // tile count in each x and y directions of map, map will always be square
+	"seed": "", // if server is run twice with same seed, exact same world is generated. specify any string of any length, leave empty for a random seed
+	"idleIncome": 0, // amount of gems automatically deposited into each core each tick before the timeout
+	"idleIncomeTimeOut": 0, // how many ticks the idleIncome last before no more gems are deposited
+	"depositHp": 50, // default HP when a deposit object is spawned
+	"depositIncome": 200, // default amount of gems a deposit is spawned with, might be modified depending on world generator
+	"gemPileIncome": 75, // default amount of gems a gem pile is spawned with, might be modified depending on world generator
+	"coreHp": 99, // health points of a core when its spawned
+	"initialBalance": 150, // default amount of gems a core is spawned with, might be modified depending on world generator
+	"wallHp": 75, // health points of a wall when its spawned
+	"wallBuildCost": 10, // amount of gems a wall builder unit must pay to build a wall
+	"bombHp": 10, // health points of a bomb when its spawned
+	"bombCountdown": 8, // countdown in ticks from when a bomb is first attacked to when it explodes
+	"bombThrowCost": 25, // amount of gems a bomb builder unit must pay to build a wall
+	"bombReach": 2, // bomb explosion range
+	"bombDamageCore": 20, // damage a bomb does to a core
+	"bombDamageUnit": 14, // damage a bomb does to a unit
+	"bombDamageDeposit": 25, // damage a bomb does to a deposit
 	"worldGenerator": "jigsaw",
 	"worldGeneratorConfig": {
 		"templatePlaceAttemptCount": 5000,
@@ -32,19 +32,19 @@
 	},
 	"units": [
 		{
-			"name": "Warrior",
-			"visualizer_asset_path": "warrior",
-			"cost": 150,
-			"hp": 25,
-			"baseActionCooldown": 3,
-			"maxActionCooldown": 12,
-			"balancePerCooldownStep": 15,
-			"damageCore": 10,
-			"damageUnit": 6,
-			"damageDeposit": 2,
-			"damageWall": 2,
-			"damageBomb": 4,
-			"buildType": "none"
+			"name": "Warrior", // name, for aesthetic / display purposes only
+			"visualizer_asset_path": "warrior", // folder that the units visuals are picked from
+			"cost": 150, // amount of gems needed to spawn the unit
+			"hp": 25, // amount of healthpoints the unit spawns with
+			"baseActionCooldown": 3, // base delay between action executions
+			"maxActionCooldown": 12, // max delay between action executions if unit is holding a lot of gems
+			"balancePerCooldownStep": 15, // defines increase of delay between action executions, see wiki for details
+			"damageCore": 10, // damage the unit does to a core
+			"damageUnit": 6, // damage the unit does to a unit
+			"damageDeposit": 2, // damage the unit does to a deposit
+			"damageWall": 2, // damage the unit does to a wall
+			"damageBomb": 4, // damage the unit does to a bomb
+			"buildType": "none" // whether & what the unit can build
 		},
 		{
 			"name": "Miner",
